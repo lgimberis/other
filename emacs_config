@@ -1,0 +1,97 @@
+;; line numbers everywhere
+(global-linum-mode 1)
+
+;; do word wrap in line instead of breaking words
+(global-visual-line-mode 1)
+
+;; help with smart search
+(ido-mode 1)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+
+;; start from scratch
+(setq inhibit-startup-message t
+inhibit-startup-echo-area-message t) 
+
+;; open without toolbar
+(tool-bar-mode -1)
+
+;; auto-indent
+(define-key global-map (kbd "RET") 'newline-and-indent)
+(setq-default default-tab-width 2)
+(setq-default c-basic-offset 2)
+
+;;(defun my-turn-indentation-off ()
+;;  (interactive)
+;;  (local-set-key (kbd "<tab>") 'indent-relative))
+
+;;(dolist (hook '(f90-mode-hook))
+;;  (add-hook hook 'my-turn-indentation-off))
+
+;; highlight current line
+(global-hl-line-mode 1)
+;; (set-face-background 'hl-line "yellow")
+(set-face-background 'hl-line "#333333")
+
+;; y or n are sufficient 
+(fset 'yes-or-no-p 'y-or-n-p)
+
+
+(setq ido-create-new-buffer 'always)
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(f90-continuation-indent 4)
+ '(f90-do-indent 2)
+ '(f90-if-indent 2)
+ '(f90-type-indent 2)
+ '(scroll-bar-mode (quote right))
+ '(show-paren-mode t)
+ '(text-mode-hook (quote (turn-on-auto-fill text-mode-hook-identify)))
+ '(tool-bar-mode nil))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#232323" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 150 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+ '(font-lock-builtin-face ((((class color) (min-colors 88) (background dark)) (:foreground "#1da31d" :weight bold))))
+ '(font-lock-comment-face ((((class color) (min-colors 88) (background dark)) (:foreground "#87b5ff"))))
+ '(font-lock-constant-face ((((class color) (min-colors 88) (background dark)) (:foreground "#fce94f"))))
+ '(font-lock-function-name-face ((((class color) (min-colors 88) (background dark)) (:foreground "#db7a62"))))
+ '(font-lock-keyword-face ((((class color) (min-colors 88) (background dark)) (:foreground "#b2ad90" :weight bold))))
+ '(font-lock-string-face ((((class color) (min-colors 88) (background dark)) (:foreground "#b8ff56"))))
+ '(font-lock-type-face ((((class color) (min-colors 88) (background dark)) (:foreground "#cfd829"))))
+ '(linum ((t (:inherit shadow :background "black"))))
+ '(region ((((class color) (min-colors 88) (background dark)) (:background "#666666")))))
+
+(add-to-list 'default-frame-alist '(height . 52))
+(add-to-list 'default-frame-alist '(width . 100))
+
+(font-lock-add-keywords 'f90-mode
+        '(("%" . font-lock-type-face)))
+
+(font-lock-add-keywords 'f90-mode
+        '(("," . font-lock-function-name-face)))
+
+;; when you mark a region, you can delete it or replace it as in other Windows programs:
+;; simply hit delete or type whatever you want or yank
+(delete-selection-mode)
+
+;; show the matching parentheses immediately
+(setq show-paren-delay 0)
+
+;; define cursor as bar
+(setq-default cursor-type 'bar) 
+
+(show-paren-mode 1)
+
+;; silence the bell, define error to be visual
+(setq visible-bell t)
+
+(setq-default tab-always-indent 'complete)
+
+(setq frame-title-format "%b")
+(setq icon-title-format "%b")
